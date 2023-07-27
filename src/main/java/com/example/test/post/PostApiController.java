@@ -2,10 +2,7 @@ package com.example.test.post;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -15,11 +12,20 @@ public class PostApiController {
 
     private final PostService postService;
 
-    @PostMapping("api/v1/post/{uuid}")
+    @PostMapping("/api/v1/post/{uuid}")
     public CreatePostResponse createPost(@PathVariable UUID uuid, @RequestBody @Valid CreatePostRequest request) {
 
         Long id = postService.createPost(uuid, request.getContent());
         return new CreatePostResponse(id);
 
     }
+
+    @GetMapping("/api/v1/post/{postId}")
+    public FindPostResponse findPost(@PathVariable Long postId) {
+
+        Post post = postService.findPost(postId);
+        return new FindPostResponse(post.getId(), post.getContent());
+
+    }
+
 }

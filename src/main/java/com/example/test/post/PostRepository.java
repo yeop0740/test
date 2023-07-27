@@ -15,4 +15,11 @@ public class PostRepository {
         em.persist(post);
 
     }
+
+    public Post findOne(Long id) {
+
+        return em.find(Post.class, id);
+
+    }
+
 }

@@ -25,4 +25,11 @@ public class PostService {
         return post.getId();
 
     }
+
+    public Post findPost(Long id) {
+
+        return postRepository.findOne(id);
+
+    }
+
 }
