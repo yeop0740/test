@@ -7,12 +7,17 @@ import com.example.test.location.Location;
 import com.example.test.pet.Pet;
 import com.example.test.post.Post;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity(name = "USERS")
+@Getter
+@Builder
 public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +25,7 @@ public class User extends BaseEntity {
     private Long id;
 
     @Column(unique = true)
-    private String uuid;
+    private UUID uuid;
 
     private String nickname;
 
