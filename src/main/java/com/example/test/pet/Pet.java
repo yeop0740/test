@@ -1,7 +1,9 @@
 package com.example.test.pet;
 
+import com.example.test.auth.User;
 import com.example.test.common.BaseEntity;
 import com.example.test.image.Image;
+import com.example.test.image.PetImage;
 import com.example.test.schedule.Schedule;
 import jakarta.persistence.*;
 
@@ -15,16 +17,16 @@ public class Pet extends BaseEntity {
     @Column(name = "pet_id")
     private Long id;
 
-    @OneToMany
-    @JoinTable(name = "PET_SCHEDULE",
-    joinColumns = @JoinColumn(name = "pet_id"),
-    inverseJoinColumns = @JoinColumn(name = "schedule_id"))
-
+    @OneToMany(mappedBy = "pet")
     private List<Schedule> schedules = new ArrayList<>();
 
     private int monthlyWalkAmount;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Image img;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uuid", referencedColumnName = "uuid")
+    private User owner;
+
+    @OneToMany(mappedBy = "pet")
+    private List<PetImage> images = new ArrayList<>();
 
 }

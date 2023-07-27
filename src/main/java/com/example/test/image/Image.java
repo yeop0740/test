@@ -4,6 +4,7 @@ import com.example.test.common.BaseEntity;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Image extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,8 +12,5 @@ public class Image extends BaseEntity {
     private Long id;
 
     private String imgUrl;
-
-    @Enumerated(value = EnumType.STRING)
-    private ImageType type;
 
 }

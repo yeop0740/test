@@ -1,5 +1,6 @@
 package com.example.test.location;
 
+import com.example.test.auth.User;
 import com.example.test.common.BaseEntity;
 import jakarta.persistence.*;
 
@@ -12,5 +13,11 @@ public class Location extends BaseEntity {
 
     @Embedded
     private Coordinate coordinate;
+
+    private String tag;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uuid", referencedColumnName = "uuid")
+    private User writer;
 
 }

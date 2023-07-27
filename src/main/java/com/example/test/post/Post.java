@@ -1,8 +1,10 @@
 package com.example.test.post;
 
+import com.example.test.auth.User;
 import com.example.test.comment.Comment;
 import com.example.test.common.BaseEntity;
 import com.example.test.image.Image;
+import com.example.test.image.PostImage;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -21,18 +23,14 @@ public class Post extends BaseEntity {
 
     private int views;
 
-    @OneToMany
-    @JoinTable(name = "POST_IMG",
-        joinColumns = @JoinColumn(name = "post_id"),
-        inverseJoinColumns = @JoinColumn(name = "img_id")
-    )
-    private List<Image> images = new ArrayList<>();
+    @OneToMany(mappedBy = "post")
+    private List<PostImage> images = new ArrayList<>();
 
-    @OneToMany
-    @JoinTable(name = "POST_COMMENT",
-        joinColumns = @JoinColumn(name = "post_id"),
-        inverseJoinColumns = @JoinColumn(name = "comment_id")
-    )
+    @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uuid", referencedColumnName = "uuid")
+    private User writer;
 
 }
