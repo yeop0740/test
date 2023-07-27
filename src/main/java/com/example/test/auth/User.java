@@ -17,7 +17,6 @@ import java.util.UUID;
 
 @Entity(name = "USERS")
 @Getter
-@Builder
 public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
