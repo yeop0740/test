@@ -18,14 +18,17 @@ public class UserApiController {
     public JoinMemberResponse joinMember(@RequestBody @Valid JoinMemberRequest request) {
 
         UUID uuid = UUID.randomUUID();
-        User user = User.builder()
-                .uuid(uuid)
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .nickname(request.getNickname())
-                .build();
+        User user = new User(uuid, request.getNickname(), request.getEmail(), request.getPassword());
         userService.join(user);
         return new JoinMemberResponse(uuid);
+
+    }
+
+    @PostMapping("api/v1/login")
+    public LoginResponse loginMember(@RequestBody @Valid LoginRequest request) {
+
+        User user = userService.login(request.getEmail(), request.getPassword());
+        return new LoginResponse(user.getNickname());
 
     }
 

@@ -9,6 +9,7 @@ import com.example.test.post.Post;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,4 +55,13 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user")
     private List<ProfileImage> images = new ArrayList<>();
 
+    public User() {
+    }
+
+    public User(UUID uuid, String nickname, String email, String password) {
+        this.uuid = uuid;
+        this.nickname = nickname;
+        this.email = email;
+        this.password = password;
+    }
 }

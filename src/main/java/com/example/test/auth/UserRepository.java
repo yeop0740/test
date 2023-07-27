@@ -16,4 +16,13 @@ public class UserRepository {
 
     }
 
+    public User findByEmailPassword(String email, String password) {
+
+        return em.createQuery("select u from USERS u " +
+                                "where u.email = :email and u.password = :password", User.class)
+                .setParameter("email", email)
+                .setParameter("password", password)
+                .getSingleResult();
+
+    }
 }
