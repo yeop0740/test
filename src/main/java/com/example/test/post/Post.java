@@ -42,4 +42,13 @@ public class Post extends BaseEntity {
 
     }
 
+    public static Post createPost(User user, String content) {
+
+        Post post = new Post();
+        post.content = content;
+        post.setWriter(user);
+        return post;
+
+    }
+
 }
