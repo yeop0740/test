@@ -6,11 +6,13 @@ import com.example.test.common.BaseEntity;
 import com.example.test.image.Image;
 import com.example.test.image.PostImage;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Post extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
