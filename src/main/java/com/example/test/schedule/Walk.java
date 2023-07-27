@@ -9,6 +9,6 @@ public class Walk extends Schedule{
 
     private String goal;
 
-    private int achieveRate;
+    private Integer achieveRate;
 
 }
