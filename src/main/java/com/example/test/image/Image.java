@@ -11,6 +11,12 @@ public class Image extends BaseEntity {
     @Column(name = "img_id")
     private Long id;
 
-    private String imgUrl;
+    private String key;
+
+    public void setKey(String key) {
+
+        this.key = key;
+
+    }
 
 }
