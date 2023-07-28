@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,6 +30,12 @@ public class PostService {
     public Post findPost(Long id) {
 
         return postRepository.findOne(id);
+
+    }
+
+    public List<Post> findPosts() {
+
+        return postRepository.findPosts();
 
     }
 

@@ -28,4 +28,11 @@ public class PostApiController {
 
     }
 
+    @GetMapping("/api/v1/posts")
+    public FindPostsResponse findPosts() {
+
+        return new FindPostsResponse(postService.findPosts());
+
+    }
+
 }
