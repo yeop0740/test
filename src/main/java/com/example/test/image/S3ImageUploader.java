@@ -1,5 +1,6 @@
 package com.example.test.image;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
@@ -13,10 +14,15 @@ import software.amazon.awssdk.services.s3.model.S3Exception;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
+@RequiredArgsConstructor
 public class S3ImageUploader implements ImageUploader {
+
+    private final S3Client s3;
 
     private String bucketName;
 
@@ -32,9 +38,8 @@ public class S3ImageUploader implements ImageUploader {
     }
 
     @Override
-    public String upload(MultipartFile multipartFile, UUID uuid) throws IOException, S3Exception {
+    public String uploadImage(MultipartFile multipartFile, UUID uuid) throws IOException, S3Exception {
 
-        S3Client s3 = getClient();
         String fileName = multipartFile.getOriginalFilename();
         String key = createKey(uuid, fileName);
         byte[] bytes = multipartFile.getBytes();
@@ -45,11 +50,26 @@ public class S3ImageUploader implements ImageUploader {
                 .build();
 
         s3.putObject(putOb, RequestBody.fromBytes(bytes));
-        return getUrl(s3, uuid, fileName);
+        return getUrl(uuid, fileName);
 
     }
 
-    private String getUrl(S3Client s3, UUID uuid, String fileName) throws S3Exception {
+    @Override
+    public List<String> uploadImages(List<MultipartFile> multipartFiles, UUID uuid) throws IOException {
+
+        List<String> urls = new ArrayList<>();
+
+        for (MultipartFile multipartFile : multipartFiles) {
+
+            urls.add(uploadImage(multipartFile, uuid));
+
+        }
+
+        return urls;
+
+    }
+
+    private String getUrl(UUID uuid, String fileName) throws S3Exception {
 
         String key = createKey(uuid, fileName);
 
