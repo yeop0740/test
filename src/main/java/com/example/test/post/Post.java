@@ -35,19 +35,23 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "uuid", referencedColumnName = "uuid")
     private User writer;
 
-    public void setWriter(User user) {
+    private void setWriter(User user) {
 
         this.writer = user;
         writer.getPosts().add(this);
 
     }
 
-    public static Post createPost(User user, String content) {
+    private void setContent(String content) {
 
-        Post post = new Post();
-        post.content = content;
-        post.setWriter(user);
-        return post;
+        this.content = content;
+
+    }
+
+    public void createPost(User user, String content) {
+
+        setContent(content);
+        setWriter(user);
 
     }
 

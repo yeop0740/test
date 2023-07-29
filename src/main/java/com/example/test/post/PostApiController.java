@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,9 +16,9 @@ public class PostApiController {
     private final PostService postService;
 
     @PostMapping("/api/v1/post/{uuid}")
-    public CreatePostResponse createPost(@PathVariable UUID uuid, @RequestBody @Valid CreatePostRequest request, @RequestParam List<PostImage> images) {
+    public CreatePostResponse createPost(@PathVariable UUID uuid, @ModelAttribute @Valid CreatePostRequest request) throws IOException {
 
-        Long id = postService.createPost(uuid, request.getContent());
+        Long id = postService.createPost(uuid, request.getContent(), request.getImages());
         return new CreatePostResponse(id);
 
     }

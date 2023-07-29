@@ -11,6 +11,7 @@ public class Image extends BaseEntity {
     @Column(name = "img_id")
     private Long id;
 
+    @Column(name = "image_key")
     private String key;
 
     public void setKey(String key) {
