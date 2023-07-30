@@ -108,4 +108,15 @@ public class PostService {
 
     }
 
+    @Transactional
+    public Long delete(Long postId) {
+
+        Post findPost = postRepository.findOne(postId);
+        Long id = findPost.getId();
+        postRepository.delete(findPost);
+        return id;
+
+    }
+
+
 }

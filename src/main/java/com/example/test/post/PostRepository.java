@@ -31,4 +31,9 @@ public class PostRepository {
 
     }
 
+    public void delete(Post post) {
+
+        em.remove(post);
+
+    }
 }
