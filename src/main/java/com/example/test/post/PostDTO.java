@@ -4,6 +4,7 @@ import com.example.test.image.PostImage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,13 +15,22 @@ public class PostDTO {
 
     private String content;
 
-    private List<PostImage> images;
+    private List<PostImageDTO> images;
 
     public PostDTO(Post post) {
 
         this.id = post.getId();
         this.content = post.getContent();
-        this.images = post.getImages();
+        List<PostImage> images = post.getImages();
+        List<PostImageDTO> imageDTOS = new ArrayList<>();
+
+        for (PostImage image : images) {
+
+            imageDTOS.add(new PostImageDTO(image.getId(), image.getKey()));
+
+        }
+
+        this.images = imageDTOS;
 
     }
 

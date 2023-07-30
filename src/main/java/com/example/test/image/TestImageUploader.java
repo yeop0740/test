@@ -35,4 +35,11 @@ public class TestImageUploader implements ImageUploader {
     public void delete(UUID uuid, String fileName) {
 
     }
+
+    @Override
+    public String createKey(UUID uuid, String fileName) {
+
+        return fileName;
+
+    }
 }

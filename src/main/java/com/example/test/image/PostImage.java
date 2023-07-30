@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostImage extends Image{
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "post_id")
     private Post post;
 
@@ -26,6 +26,12 @@ public class PostImage extends Image{
 
         this.post = post;
         post.getImages().add(this);
+
+    }
+
+    public void cut() {
+
+        this.post = null;
 
     }
 

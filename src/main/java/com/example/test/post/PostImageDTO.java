@@ -2,17 +2,15 @@ package com.example.test.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-public class FindPostResponse {
+public class PostImageDTO {
 
     private Long id;
 
-    private String content;
-
-    private List<PostImageDTO> images;
+    private String key;
 
 }

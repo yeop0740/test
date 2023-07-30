@@ -14,4 +14,6 @@ public interface ImageUploader {
 
     public void delete(UUID uuid, String fileName);
 
+    public String createKey(UUID uuid, String fileName);
+
 }

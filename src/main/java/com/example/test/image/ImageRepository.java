@@ -31,4 +31,9 @@ public class ImageRepository {
 
     }
 
+    public void deletePostImage(PostImage image) {
+
+        em.remove(image);
+
+    }
 }

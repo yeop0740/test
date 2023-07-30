@@ -82,7 +82,8 @@ public class S3ImageUploader implements ImageUploader {
 
     }
 
-    private String createKey(UUID uuid, String fileName) {
+    @Override
+    public String createKey(UUID uuid, String fileName) {
 
         return new StringBuffer()
                 .append(uuid.toString())

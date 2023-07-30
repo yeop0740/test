@@ -6,11 +6,13 @@ import com.example.test.image.Image;
 import com.example.test.image.PetImage;
 import com.example.test.schedule.Schedule;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Pet extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
