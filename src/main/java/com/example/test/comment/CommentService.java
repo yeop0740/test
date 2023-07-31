@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -41,4 +42,55 @@ public class CommentService {
         return comment.getId();
 
     }
+
+    public User findCommentsWriter(UUID uuid) {
+
+        User findUser = userRepository.findByUuid(uuid);
+        List<Comment> comments = findUser.getComments();
+        comments.size();
+
+        if (!comments.isEmpty()) {
+
+            for (Comment comment : comments) {
+
+                comment.getChildren().size();
+
+                if (comment.getParent() != null) {
+
+                    comment.getParent().getId();
+
+                }
+
+            }
+
+        }
+
+        return findUser;
+
+    }
+
+    public Post findCommentsPost(Long postId) {
+
+        Post findPost = postRepository.findOne(postId);
+        findPost.getWriter().getId();
+        List<Comment> comments = findPost.getComments();
+
+        for (Comment comment : comments) {
+
+            Comment parent = comment.getParent();
+
+            if (parent != null) {
+
+                comment.getParent().getId();
+
+            }
+
+            comment.getWriter().getId();
+
+        }
+
+        return findPost;
+
+    }
+
 }
