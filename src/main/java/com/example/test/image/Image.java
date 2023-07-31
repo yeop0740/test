@@ -2,15 +2,24 @@ package com.example.test.image;
 
 import com.example.test.common.BaseEntity;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Getter
 public class Image extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "img_id")
     private Long id;
 
-    private String imgUrl;
+    @Column(name = "image_key")
+    private String key;
+
+    public void setKey(String key) {
+
+        this.key = key;
+
+    }
 
 }
