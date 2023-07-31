@@ -102,4 +102,16 @@ public class CommentService {
 
     }
 
+    @Transactional
+    public Long deleteComment(Long commentId) {
+
+        Comment findComment = commentRepository.findOne(commentId);
+        Long postId = findComment.getPost().getId();
+        findComment.getPost().removeComment(findComment); // post 객체를 이용하여 comment 삭제
+//        findComment.getWriter().removeComment(findComment); // user 객체를 이용하여 comment 삭제
+//        findComment.cutParent(); // comment 객체로는 삭제할 수 없음. 왜냐하면 orphanRemoval = false 로 설정되어 있기 때문이다.(깊이 1인 댓글이 parent 가 null 이기 때문)
+        return postId;
+
+    }
+
 }

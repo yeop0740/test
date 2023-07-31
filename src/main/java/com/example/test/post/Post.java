@@ -73,4 +73,11 @@ public class Post extends BaseEntity {
 
     }
 
+    public void removeComment(Comment comment) {
+
+        comments.remove(comment);
+        comment.cutPost();
+
+    }
+
 }

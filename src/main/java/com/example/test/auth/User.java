@@ -46,7 +46,7 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "writer")
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "writer")
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "writer")
@@ -63,5 +63,12 @@ public class User extends BaseEntity {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
+    }
+
+    public void removeComment(Comment comment) {
+
+        comment.cutWriter();
+        comments.remove(comment);
+
     }
 }

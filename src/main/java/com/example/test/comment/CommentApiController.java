@@ -85,4 +85,12 @@ public class CommentApiController {
 
     }
 
+    @DeleteMapping("/api/v1/comment/{commentId}")
+    public DeleteCommentResponse deleteComment(@PathVariable Long commentId) {
+
+        Long postId = commentService.deleteComment(commentId);
+        return new DeleteCommentResponse(postId);
+
+    }
+
 }

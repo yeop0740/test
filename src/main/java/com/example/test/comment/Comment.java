@@ -85,4 +85,40 @@ public class Comment extends BaseEntity {
 
     }
 
+    public void cutWriter() {
+
+        this.writer = null;
+
+    }
+
+    public void cutPost() {
+
+        this.post = null;
+
+    }
+
+//    public void cutParent() {
+//
+//        parent.children.remove(this);
+//        this.parent = null;
+//
+//    }
+//
+//    public void remove(Comment comment) {
+//
+//        System.out.println("Comment.writer");
+//        this.writer.getComments().remove(comment);
+//        this.writer = null;
+//
+//        System.out.println("Comment.post");
+//        this.post.getComments().remove(comment);
+//        this.post = null;
+//        System.out.println("Comment.parent");
+//        if (parent != null) {
+//            this.parent.getChildren().remove(comment);
+//            this.parent = null;
+//        }
+//
+//    }
+
 }
