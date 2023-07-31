@@ -77,4 +77,12 @@ public class CommentApiController {
 
     }
 
+    @PutMapping("/api/v1/comment/{commentId}")
+    public UpdateCommentResponse updateComment(@PathVariable Long commentId, @RequestBody UpdateCommentRequest request) {
+
+        Long id = commentService.updateComment(commentId, request.getContent());
+        return new UpdateCommentResponse(id);
+
+    }
+
 }

@@ -93,4 +93,13 @@ public class CommentService {
 
     }
 
+    @Transactional
+    public Long updateComment(Long commentId, String content) {
+
+        Comment findComment = commentRepository.findOne(commentId);
+        findComment.change(content);
+        return findComment.getId();
+
+    }
+
 }

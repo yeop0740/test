@@ -78,4 +78,11 @@ public class Comment extends BaseEntity {
         return comment;
 
     }
+
+    public void change(String content) {
+
+        this.content = content;
+
+    }
+
 }
